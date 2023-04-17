@@ -2,5 +2,5 @@ controlplane*
 worker*
 secrets.yaml
 talosconfig
-wyse*.yaml
+./wyse*.yaml
 .idea
