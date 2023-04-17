@@ -1,0 +1,49 @@
+machine:
+  network:
+    extraHostEntries:
+         - ip: 192.168.1.200
+           aliases:
+             - wyse-1
+         - ip: 192.168.1.201
+           aliases:
+             - wyse-2
+         - ip: 192.168.1.202
+           aliases:
+             - wyse-3
+         - ip: 192.168.1.203
+           aliases:
+             - wyse-4
+  kubelet:
+    extraMounts:
+      - destination: /var/mnt/storage
+        type: bind
+        source: /var/mnt/storage
+        options:
+          - bind
+          - rshared
+          - rw
+  disks:
+    - device: /dev/sda
+      partitions:
+        - mountpoint: /var/mnt/storage
+
+  install:
+    disk: /dev/mmcblk0
+    bootloader: true
+    wipe: true
+
+  features:
+    # Configure Talos API access from Kubernetes pods.
+    # This is useful for monitoring and using pods for backup + updating operations.
+    kubernetesTalosAPIAccess:
+        enabled: true
+        allowedRoles:
+            - os:reader
+        allowedKubernetesNamespaces:
+            - kube-system
+
+cluster:
+  controlPlane:
+    endpoint: https://wyse-1:6443
+  clusterName: wyse-cluster
+  allowSchedulingOnControlPlanes: true
