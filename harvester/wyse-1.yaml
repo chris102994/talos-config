@@ -1,7 +1,6 @@
-# https://docs.harvesterhci.io/v1.1/install/harvester-configuration
 scheme_version: 1
-server_url: https://wyse-1:443  # May not need for non-join
-token: my_cluster_token         # May not need for non-join
+server_url: https://wyse-1:443
+token: my_cluster_token
 os:
   ssh_authorized_keys:
     - github:chris102994
@@ -29,7 +28,7 @@ install:
     subnet_mask: 24
     gateway: 192.168.1.1
     mtu: 1500
-  force_efi: true # Not sure if this is needed
+  force_efi: true
   device: /dev/mmcblk0
   data_disk: /dev/sda
   poweroff: false
@@ -38,7 +37,7 @@ install:
   tty: ttyS0
   vip: 192.168.1.200
   vip_mode: static
-  force_mbr: false # If install issues this should likely be true.
+  force_mbr: false
   harvester:
     storage_class:
       replica_count: 4
