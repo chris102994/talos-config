@@ -23,10 +23,11 @@ install:
   mode: create
   management_interface:
     interfaces:
-    - name: eth0
+    #- name: eth0
+      - name: enp1s0
     method: static
     ip: 192.168.1.200
-    subnet_mask: "24"
+    subnet_mask: 255.255.244.0
     gateway: 192.168.1.1
     mtu: 1500
   force_efi: true # Not sure if this is needed
