@@ -1,0 +1,46 @@
+# https://docs.harvesterhci.io/v1.1/install/harvester-configuration
+scheme_version: 1
+server_url: https://wyse-1:443  # May not need for non-join
+token: my_cluster_token         # May not need for non-join
+os:
+  ssh_authorized_keys:
+    - github:chris102994
+  hostname: wyse-1
+  modules:
+    - kvm
+    - nvme
+  sysctls:
+    kernel.printk: "4 4 1 7"
+    kernel.kptr_restrict: "1"
+  dns_nameservers:
+    - 8.8.8.8
+    - 1.1.1.1
+  ntp_servers:
+    - time.google.com
+    - time2.google.com
+  password: rancher
+install:
+  mode: create
+  management_interface:
+    interfaces:
+    - name: eth0
+    method: static
+    ip: 192.168.1.200
+    subnet_mask: 24
+    gateway: 192.168.1.1
+    mtu: 1500
+  force_efi: true # Not sure if this is needed
+  device: /dev/mmcblk0
+  data_disk: /dev/sda
+  poweroff: false
+  no_format: false
+  debug: true
+  tty: ttyS0
+  vip: 192.168.1.200
+  vip_mode: static
+  force_mbr: false # If install issues this should likely be true.
+  harvester:
+    storage_class:
+      replica_count: 4
+system_settings:
+  log-level: trace
