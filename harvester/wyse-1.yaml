@@ -1,7 +1,7 @@
 # https://docs.harvesterhci.io/v1.1/install/harvester-configuration
 scheme_version: 1
-server_url: https://wyse-1:443  # May not need for non-join
-token: my_cluster_token         # May not need for non-join
+#server_url: https://wyse-1:443  # Not need for create mode
+token: my_cluster_token
 os:
   ssh_authorized_keys:
     - github:chris102994
@@ -14,7 +14,7 @@ os:
     kernel.kptr_restrict: "1"
   dns_nameservers:
     - 8.8.8.8
-    - 1.1.1.1
+    - 8.8.4.4
   ntp_servers:
     - time.google.com
     - time2.google.com
